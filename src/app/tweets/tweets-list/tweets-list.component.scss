@@ -1,0 +1,95 @@
+.master {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // width: 80%;
+    max-width: 780px;
+    margin: auto;
+
+    flex-flow: row;
+    align-items: center;
+
+
+}
+
+.nav-bar {
+    flex: 1;
+    max-width: 100px;
+    height: 80%;
+
+    .btn {
+        margin-top: 10px;
+    }
+  
+    // background-color: grey;
+}
+
+.main-container {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    max-width: 90%;
+    height: 800px;
+    overflow: hidden;
+    // margin: auto;
+    padding: 50px;
+
+
+}
+
+.tweets-list {
+    // margin-top: 25px;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+ 
+  
+}
+.tweets-list::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+app-tweet {
+    display: block;
+    // margin-bottom: 25px;
+}
+
+.floating-add-button {
+
+    padding: auto;
+    margin: auto;
+    width: 110px;
+    margin-top: 20px;
+    background-color: rgb(98, 162, 245);
+}
+
+.floating-home-button {
+    padding: auto;
+    margin-top: 20px;
+
+    width: 110px;
+    background-color: rgb(98, 162, 245);
+}
+
+ .form-inline {
+    display: flex;
+    flex-direction: row;
+    padding-left: 5px;
+    .btn {
+        margin-left: 10px;
+    }
+}
+
+
+.search-input {
+    .form-control {
+    border-radius: 20px;
+    }
+}
+
+.search-button {
+    .btn {
+    border-radius: 20px;
+    }
+}

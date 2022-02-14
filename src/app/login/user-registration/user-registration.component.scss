@@ -1,0 +1,29 @@
+.saveCancel {
+    display: flex;
+    flex-direction: row;
+    margin-top: 25px;
+   margin-left: 20px;
+   padding-left: 10px;
+   .cancel {
+       margin-left: 50px;
+   }
+}
+
+p {
+    font-family: Lato;
+  }
+  
+  #root {
+    padding: 30px;
+  }
+  
+  .register-form {
+    max-width: 350px;
+    margin: auto;
+  }
+
+  .btn {
+      margin-top: 25px;
+      margin-left: 25px;
+  }
+  

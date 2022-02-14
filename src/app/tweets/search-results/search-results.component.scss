@@ -1,0 +1,58 @@
+.container {
+    // border: rgb(236, 235, 235) 1px solid;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+}
+
+.users-results, .tweets-results {
+    padding: 10px;
+    width: 120px;
+    height: 60px;
+    border: rgb(236, 235, 235) 1px solid;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+}
+
+.users-results-button {
+    margin-top: -35px;
+    margin-left: -10px;
+    width: 120px;
+    height: 60px;
+    align-content:flex-start;
+    border: none;
+    overflow: hidden;
+   background-color: transparent;
+    position: relative;
+}
+
+.users-results:hover, .tweets-results:hover {
+    background-color: rgb(241, 241, 241);
+    cursor: pointer;
+}
+
+.reserve {
+    width:40%;
+    height: 60px;
+    border-bottom: rgb(236, 235, 235) 1px solid;
+}
+
+.status-bar {
+    width: 80px;
+    height: 10px;
+    background-color: rgb(137, 246, 250);
+    border: none;
+    border-radius: 3px;
+    // margin-left: 7px;
+    position:relative
+
+}
+
+.users-list {
+    position: relative;
+}

@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="navbar">
+        <div class="users-results">
+            <div class="user-results-text">
+                users results
+            </div>
+            <div class="user-results-bar">
+
+                <button #usersRes class="users-results-button" (click)="resultsViewUsers()"><button class="status-bar"
+                        *ngIf="(usersView | async) == true"></button></button>
+
+            </div>
+        </div>
+        <div class="tweets-results">
+            <div class="tweets-results-text">
+                tweets results
+            </div>
+            <div class="tweets-results-bar" (click)="resultsViewTweets()">
+                <button class="users-results-button" (click)="resultsViewTweets()"><button class="status-bar"
+                        *ngIf="(tweetsView | async) == true"></button></button>
+                <div>
+                </div>
+            </div>
+        </div>
+        <div class="reserve">
+        </div>
+    </div>
+    <div class="users-list" *ngIf="(usersView | async) == true">
+
+        <app-user *ngFor="let user of users" [name]="user.name" [surname]="user.surname" [username]="user.username">
+        </app-user>
+    </div>
+
+    <div class="tweets-list" *ngIf="(tweetsView | async) == true">
+        <app-tweet *ngFor="let tweet of userTweets" [id]="tweet.id" [content]="tweet.content"
+            [username]="tweet.username" [publishingTime]="tweet.publishingTime">
+        </app-tweet>
+    </div>
+
+
+</div>

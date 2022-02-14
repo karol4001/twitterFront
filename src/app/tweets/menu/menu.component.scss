@@ -1,0 +1,101 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 60%px;
+    margin: auto;
+    *:focus {
+        outline: none !important;
+        box-shadow: none;
+    }
+}
+.nav-bar {
+    
+
+    flex-flow: row;
+    align-items: center;
+
+    flex: 1;
+    max-width: 150px;
+    height: 500px;
+
+    .btn {
+        margin-top: 10px;
+    }
+  
+    // background-color: grey;
+}
+
+.home {
+    display: flex;
+    flex-direction: row;
+    border: none;
+    outline: none;
+    
+}
+
+.home:hover {
+    width: 60px;
+
+    border-radius: 30px;
+   background-color: rgb(226, 224, 224);
+}
+
+.home-text {
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: medium;
+    font-style: italic;
+    text-align: center;
+    margin-top: 25px;
+}
+
+.addTweet {
+    
+    
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-style: bold;
+    font-size: medium;
+    .btn {
+        margin-top: 25px;
+        color: white;
+        border-radius: 40px;
+        border: none;
+        width: 170px;
+    height: 50px;
+    }
+    .btn:hover {
+        background-color: rgb(39, 146, 179);
+    }
+    .btn:active {
+        background-color: rgb(46, 123, 146);
+    }
+}
+
+.profile, .explore, .notifications, .messages, .bookmarks, .lists {
+  
+    display: flex;
+    flex-direction: row;
+    .profile-text, .explore-text, .notifications-text, .messages-text, .bookmarks-text, .lists-text {
+        margin-top: 20px;
+        font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: large;
+    margin-top: 25px;
+    // font-style: italic;
+    }
+    
+}
+
+.profile:hover, .explore:hover, .notifications:hover, .messages:hover, .bookmarks:hover, .lists:hover {
+// border: solid 0.1px;
+// border-radius: 30px;
+// background-color: aliceblue;
+// width: 140px;
+// height: 60px;
+color: rgb(84, 219, 243);
+    // filter: invert(329%) sepia(155%) saturate(2576%) hue-rotate(86deg) brightness(118%) contrast(119%);
+    .profile-icon, .explore-icon, .notifications-icon, .messages-icon, .bookmarks-icon, .lists-icon {
+    filter: invert(520%) brightness(240%) sepia(100%) hue-rotate(150deg) saturate(1000%) contrast(0.8);
+    }
+}
+

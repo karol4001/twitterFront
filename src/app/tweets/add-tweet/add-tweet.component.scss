@@ -1,0 +1,62 @@
+.container {
+    *:focus {
+        outline: none !important;
+        box-shadow: none;
+    }
+    width: 400px;
+    height: 160px;
+    display: block;
+    float: left;
+    .form-control {
+        width: 250px;
+    }
+}
+
+.saveCancel {
+    display: flex;
+    flex-direction: row;
+    .btn {
+        margin-left: 25px;
+
+    }
+}
+
+.form-control {
+    border: none;
+    width: 50%;
+    height: 120px;
+}
+
+.addTweet {
+    margin-top: 15%;
+    margin-left: 15px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-style: bold;
+    font-size: medium;
+    .btn {
+        color: white;
+        border-radius: 35px;
+        border: none;
+        margin-top: 50px;
+    }
+    .btn:hover {
+        background-color: rgb(39, 146, 179);
+    }
+    .btn:active {
+        background-color: rgb(46, 123, 146);
+    }
+}
+
+.add-tweet-window {
+    display: flex;
+    flex-direction: row;
+}
+
+.form-control {
+    width: 150px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}

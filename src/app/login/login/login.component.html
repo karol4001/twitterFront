@@ -1,0 +1,45 @@
+<div class="container d-flex justify-">
+    <div class="col-md-6 col-md-offset-3 loginBox">
+        <h3>Logowanie</h3>
+        <p>{{message}}</p>
+        <form #myForm="ngForm" (ngSubmit)="login()">
+            <div class="form-group clearfix">
+                <label class="col-md-3 col-sm-5 col-xs-12" for="username">Nazwa_użytkownika:</label>
+                <div class="col-md-9 col-sm-7 col-xs-12">
+                    <input class="form-control" formcontrolname="username" [(ngModel)]="test.username"
+                        [ngModelOptions]="{standalone: true}" type="text" />
+                    <!-- <div>
+                        <div>Userid is required</div>
+                    </div> -->
+                </div>
+            </div>
+            <div class="form-group clearfix">
+                <label class="col-md-3 col-sm-5 col-xs-12" for="password">chasło:</label>
+                <div class="col-md-9 col-sm-7 col-xs-12">
+                    <input class="form-control" formcontrolname="password" type="password" [(ngModel)]="test.password"
+                        [ngModelOptions]="{standalone: true}" />
+                    <!-- <div>
+                        <div>Password is required</div>
+                    </div> -->
+                    <div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div id="message" class="col-xs-12 form-group text-right mt-3" *ngIf="authorized == false">
+                <h5>
+                    {{ message }}
+                </h5>
+
+            </div>
+
+            <div class="col-xs-12 form-group text-right mt-3">
+                <div>
+                    <a href="/register">New user registration</a>
+                </div>
+                <button class="btn btn-outline-primary mt-4" type="submit">Login</button>
+            </div>
+        </form>
+    </div>
+</div>

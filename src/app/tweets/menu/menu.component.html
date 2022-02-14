@@ -1,0 +1,69 @@
+<div class="container">
+    <div class="nav-bar">
+        <div class="home">
+            <div class="home-icon">
+                <button class="btn" (click)="tweetsView()" routerLink="/home"><img class="icon-home"
+                        src="../../../assets/icons/twitter.svg" alt="" width="35px" height="35px"></button>
+            </div>
+        </div>
+
+        <div class="explore">
+            <div class="explore-icon">
+                <button class="btn"><img class="profile-icon" src="../../../assets/icons/hash.svg" width="35px"
+                        height="35px"></button>
+            </div>
+            <div class="explore-text">
+                Explore
+            </div>
+        </div>
+        <div class="notifications">
+            <div class="notifications-icon">
+                <button class="btn"><img class="notifications-icon" src="../../../assets/icons/bell.svg" width="35px"
+                        height="35px"></button>
+            </div>
+            <div class="notifications-text">
+                Notifications
+            </div>
+        </div>
+        <div class="messages">
+            <div class="messages-icon">
+                <button class="btn"><img class="messages-icon" src="../../../assets/icons/envelope.svg" width="35px"
+                        height="35px"></button>
+            </div>
+            <div class="messages-text">
+                Messages
+            </div>
+        </div>
+        <div class="bookmarks">
+            <div class="bookmarks-icon">
+                <button class="btn"><img class="bookmarks-icon" src="../../../assets/icons/bookmark.svg" width="35px"
+                        height="35px"></button>
+            </div>
+            <div class="bookmarks-text">
+                Bookmarks
+            </div>
+        </div>
+        <div class="lists">
+            <div class="lists-icon">
+                <button class="btn"><img class="lists-icon" src="../../../assets/icons/card-text.svg" width="35px"
+                        height="35px"></button>
+            </div>
+            <div class="lists-text">
+                Lists
+            </div>
+        </div>
+        <div class="profile">
+            <div class="profile-icon">
+                <button class="btn"><img class="profile-icon" src="../../../assets/icons/person.svg" width="35px"
+                        height="35px" (click)="profileView()"></button>
+            </div>
+            <div class="profile-text">
+                Profile
+            </div>
+        </div>
+        <div class="addTweet">
+            <button class="btn btn-info" (click)="addTweet()">Tweet</button>
+        </div>
+
+    </div>
+</div>

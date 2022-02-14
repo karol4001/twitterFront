@@ -1,0 +1,26 @@
+<div #container class="user-container">
+    <!-- flex row -->
+
+    <div class="user-icon">
+        <button type="button" class="user-icon-btn">{{ userNameIcon}}</button>
+    </div>
+    <div class="user-content">
+        <!-- flex col -->
+        <div class="user-info">
+            <!-- row -->
+
+            <div class="user-name">
+                {{name}}&nbsp;{{surname}}
+            </div>
+        </div>
+        <div class="user-login">
+            @{{username}}
+        </div>
+    </div>
+    <div class="empty">
+
+    </div>
+    <div class="follow-container">
+        <button class="btn btn-info">Follow</button>
+    </div>
+</div>

@@ -1,0 +1,93 @@
+<div #container class="tweet-container">
+    <!-- flex row -->
+
+    <div class="user-icon">
+        <button type="button" class="user-icon-btn">{{ userNameIcone}}</button>
+    </div>
+    <div class="tweet-content">
+        <!-- flex col -->
+        <div class="user-info">
+            <!-- row -->
+
+            <div class="user-name">
+                {{name}}&nbsp;{{surname}}
+            </div>
+            <div class="follow-icon">
+                <button class="btn"><img class="filter-green" src="../../../assets/icons/patch-check-fill.svg"
+                        width="20px" style="fill: cornflowerblue;"></button>
+            </div>
+            <div class="user-login">
+                @{{username}}
+            </div>
+            <div class="published">
+                <div class="date-time">{{ publishingTime }}</div>
+            </div>
+
+        </div>
+        <div class="content">
+            <div #bodyText class="tweet-body">
+                {{ content }}
+
+                <div #truncator class="fade-out-truncation"> </div>
+            </div>
+        </div>
+        <div class="bottom-icons">
+            <div class="comments">
+                <div class="comment-icon">
+                    <button class="btn"><img src="../../../assets/icons/chat.svg" width="20px" data-toggle="tooltip"
+                            data-placement="top" title="Comments"></button>
+                </div>
+                <div class="comments-number">
+                    {{ comments }}
+                </div>
+            </div>
+            <div class="retweets">
+                <div class="retweet-icon">
+                    <button class="btn"><img src="../../../assets/icons/arrow-repeat.svg" width="20px"
+                            data-toggle="tooltip" data-placement="top" title="Retweets"></button>
+                </div>
+                <div class="retweets-number">
+                    {{ retweets }}
+                </div>
+            </div>
+            <div class="likes">
+                <div class="likes-icon">
+                    <button class="btn"><img src="../../../assets/icons/heart.svg" width="20px" data-toggle="tooltip"
+                            data-placement="top" title="Likes" (click)="addTweetLike()"></button>
+                </div>
+                <div class="likes-number">
+                    {{ likes }}
+                </div>
+            </div>
+            <div class="share">
+                <div class="share-icon">
+                    <button class="btn"><img src="../../../assets/icons/upload.svg" width="20px"></button>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!--  -->
+
+    <!-- <div class="tweet-content" (click)="ngOnInit()">
+        <div class="header">
+
+
+            <h1 class="tweet-title"><span class="tweet-id">{{ tweetId }}</span>&nbsp;&nbsp; {{ userName }}</h1>
+
+
+        </div>
+        <div #bodyText class="tweet-body">
+            <h3>{{ content }} </h3>
+            <div class="date-time">{{ dateTime }}</div>
+
+
+            <div #truncator class="fade-out-truncation"> </div>
+        </div>
+    </div> -->
+
+    <!-- <div type="button" class="x-button"></div> -->
+
+</div>
