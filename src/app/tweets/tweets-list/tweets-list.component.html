@@ -1,14 +1,12 @@
 <div class="master">
 
-    <app-menu></app-menu>
-
     <div class="main-container">
 
         <nav class="navbar navbar-light">
             <form class="form-inline" name="search-form">
                 <div class="search-input">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
-                        [(ngModel)]="searchWord" [ngModelOptions]="{standalone: true}">
+                        (click)="search()" [(ngModel)]="searchWord" [ngModelOptions]="{standalone: true}">
                 </div>
                 <div class="search-button">
                     <button class="btn btn-outline-info my-2 my-sm-0" type="button" (click)="search()">Search</button>
@@ -25,7 +23,7 @@
         <div class="tweets-list" *ngIf="tweetsVisible">
             <app-tweet *ngFor="let tweet of tweets" [id]="tweet.id" [content]="tweet.content"
                 [username]="tweet.username" [publishingTime]="tweet.publishingTime" [likes]="tweet.likes"
-                [retweets]="tweet.retweets" [comments]="" tweet.comments>
+                [retweets]="tweet.retweets" [comments]="tweet.comments">
             </app-tweet>
 
         </div>

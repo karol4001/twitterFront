@@ -8,6 +8,7 @@ import { User, UserDtoIn } from 'src/app/model';
 import { TwiterServiceService } from 'src/app/services/twiter-service.service';
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { MenuServiceService } from 'src/app/services/menu-service.service';
 
 
 @Component({
@@ -27,30 +28,14 @@ export class LoginComponent implements OnInit, OnDestroy {
   authorized!: boolean;
   responseUser!: UserDtoIn;
 
-
-  testUser: User = {
-    name: 'Clint',
-    surname: 'Eastwood',
-    password: '123',
-    email: 'testUser1@test',
-    username: 'clint123'
-  }
-
-  testUser1: User = {
-    name: 'Clint',
-    surname: 'Eastwood',
-    password: '123',
-    email: 'testUser1@test',
-    username: 'clint123'
-  }
-
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private authService: AuthLoginService,
     private twiterService: TwiterServiceService,
     private http: HttpClient,
-    private pipe: DatePipe
+    private pipe: DatePipe,
+    private menuService: MenuServiceService
   ) {
 
   }
@@ -67,32 +52,34 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.test.password = "";
 
   }
-
   get f() { return this.loginForm.controls; }
 
   login() {
-
     // wysyłanie danych do serwera REST w celu autoryzacji ...
-
     // odbiór danych z serwera REST
+    console.log('... login');
+
     this.http.post('http://localhost:9000/api/login', this.test).subscribe(
       (response: any) => {
-        console.log(response);
         console.log(response.headers);
         if (response.username) {
           this.authorized = true;
-          this.responseUser = response;
-          console.log('Logged user: ' + this.responseUser);
+          // this.twiterService.setUser(response);
+          this.user = response;
+          console.log('Logged user: ' + JSON.stringify(this.responseUser));
         }
 
         if (this.authorized) {
-          this.user = this.responseUser;
+
           this.writeUserName();
           localStorage.setItem('user', JSON.stringify(this.user));
           console.log("Login successful");
           localStorage.setItem('isLoggedIn', "true");
+          localStorage.setItem('menuOn', 'true');
+          this.menuService.setMenuStatus(true);
           // localStorage.setItem('token', this.f['username'].value);
           this.router.navigate([this.returnUrl]);
+          // setTimeout(() => { window.location.reload(); }, 100);
         }
         else {
 
@@ -100,7 +87,6 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.message = "Please check your userid and password";
           this.authorized = false;
         }
-        // alert(JSON.stringify(response));
 
       },
       (error) => {
@@ -111,9 +97,6 @@ export class LoginComponent implements OnInit, OnDestroy {
       }
     );
 
-    // if (this.test.username == this.model.username && this.test.password == this.model.password) {
-    //   this.user = this.testUser;
-
   }
 
   logout() {
@@ -121,16 +104,15 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   writeUserName() {
-    // this.twiterService.setUser(this.user);
+
     localStorage.setItem('name', this.user.name);
     localStorage.setItem('surname', this.user.surname);
     localStorage.setItem('username', this.user.username);
-    let date = '';
+
     // if (this.user.creationDateTime.toDateString() != null) {
     // date = this.user.creationDateTime.toDateString();
     // }
     // localStorage.setItem('joined', this.pipe.transform(date, 'dd-MM-yyyy gg:mm:ss') as string);
-    console.log('write user data:' + this.user);
   }
 
   ngOnDestroy(): void {

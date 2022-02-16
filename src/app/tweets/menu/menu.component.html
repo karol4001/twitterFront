@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="menuOnFlag == true" [@slideInOut]>
     <div class="nav-bar">
         <div class="home">
             <div class="home-icon">
@@ -10,7 +10,7 @@
         <div class="explore">
             <div class="explore-icon">
                 <button class="btn"><img class="profile-icon" src="../../../assets/icons/hash.svg" width="35px"
-                        height="35px"></button>
+                        height="35px" (click)="exploreView()"></button>
             </div>
             <div class="explore-text">
                 Explore
@@ -66,4 +66,6 @@
         </div>
 
     </div>
+
+    <app-dashboard></app-dashboard>
 </div>

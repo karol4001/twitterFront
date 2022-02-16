@@ -3,6 +3,7 @@ import { DatePipe } from '@angular/common';
 import { TwiterServiceService } from 'src/app/services/twiter-service.service';
 import { HttpClient } from '@angular/common/http';
 import { TweetsListComponent } from '../tweets-list/tweets-list.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tweet',
@@ -28,11 +29,12 @@ export class TweetComponent implements OnInit {
   @ViewChild('truncator', { static: true }) truncator!: ElementRef<HTMLElement>;
   @ViewChild('bodyText', { static: true }) bodyText!: ElementRef<HTMLElement>;
 
-  constructor(private renderer: Renderer2, private datePipe: DatePipe, private twiterService: TwiterServiceService, private http: HttpClient, private tweetsList: TweetsListComponent) {
-    // this.tweetId = '0034';
-    // this.userName = 'JohnDoe';
-    // this.content = 'To jest przykładowy content testsetstee 1';
-    // this.dateTime = Date.now();
+  constructor(
+    private renderer: Renderer2,
+    private datePipe: DatePipe,
+    private twiterService: TwiterServiceService,
+    private http: HttpClient, private tweetsList: TweetsListComponent,
+    private router: Router) {
   }
 
   ngOnInit(): void {
@@ -62,5 +64,20 @@ export class TweetComponent implements OnInit {
     this.tweetsList.ngOnInit();
   }
 
+  tweetDetails() {
+
+    let tweet = {
+      id: this.id,
+      content: this.content,
+      likes: this.likes,
+      retweets: this.retweets,
+      comments: this.comments,
+      username: this.username,
+      publishingTime: this.publishingTime
+    }
+
+    this.twiterService.tweetDetails(tweet)
+    this.router.navigate(['tweet-details']);
+  }
 
 }

@@ -19,7 +19,11 @@ import { MenuComponent } from './tweets/menu/menu.component';
 import { UserProfileComponent } from './tweets/user-profile/user-profile.component';
 import { SearchResultsComponent } from './tweets/search-results/search-results.component';
 import { TwiterServiceService } from './services/twiter-service.service';
-import { UserComponent } from './user/user.component';
+import { UserComponent } from './tweets/user/user.component';
+import { MenuServiceService } from './services/menu-service.service';
+import { ExploreComponent } from './tweets/explore/explore.component';
+import { HashtagComponent } from './tweets/explore/hashtag/hashtag.component';
+
 
 
 
@@ -39,6 +43,8 @@ import { UserComponent } from './user/user.component';
     UserProfileComponent,
     SearchResultsComponent,
     UserComponent,
+    ExploreComponent,
+    HashtagComponent,
 
   ],
   imports: [
@@ -47,10 +53,11 @@ import { UserComponent } from './user/user.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+
 
   ],
-  providers: [AuthGuard, DatePipe, TwiterServiceService],
+  providers: [AuthGuard, DatePipe, TwiterServiceService, MenuServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }    

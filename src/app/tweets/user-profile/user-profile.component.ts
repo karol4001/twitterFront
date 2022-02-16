@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Data } from '@angular/router';
 import { DatePipe } from '@angular/common';
 
+
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',

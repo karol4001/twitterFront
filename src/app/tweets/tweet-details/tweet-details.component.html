@@ -1,1 +1,13 @@
-<p>tweet-details works!</p>
+<div class="container">
+
+    <div class="original-tweet">
+        <app-tweet *ngFor="let tweet" [id]="tweet.id" [content]="tweet.content" [username]="tweet.username"
+            [publishingTime]="tweet.publishingTime" [likes]="tweet.likes" [retweets]="tweet.retweets"
+            [comments]="tweet.comments"></app-tweet>
+    </div>
+    <div class="comments-container">
+        <app-tweet *ngFor="let comment of comments" [id]="tweet.id" [content]="comment.content"
+            [username]="comment.username" [publishingTime]="comment.publishingTime" [likes]="comment.likes"
+            [retweets]="comment.retweets" [comments]="comment.comments"></app-tweet>
+    </div>
+</div>

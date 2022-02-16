@@ -1,7 +1,11 @@
 .container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    // display: flex;
+    // flex-direction: row;
+    // justify-content: center;
+    // position:relative;
+    // left: 20px;
+    // top: 40px;
+    
     align-items: center;
     width: 60%px;
     margin: auto;
@@ -11,20 +15,14 @@
     }
 }
 .nav-bar {
-    
-
     flex-flow: row;
     align-items: center;
-
     flex: 1;
     max-width: 150px;
     height: 500px;
-
     .btn {
         margin-top: 10px;
     }
-  
-    // background-color: grey;
 }
 
 .home {
@@ -32,12 +30,10 @@
     flex-direction: row;
     border: none;
     outline: none;
-    
 }
 
 .home:hover {
     width: 60px;
-
     border-radius: 30px;
    background-color: rgb(226, 224, 224);
 }

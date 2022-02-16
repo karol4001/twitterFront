@@ -16,6 +16,7 @@ export class MainLayoutComponent implements OnInit, OnDestroy {
     if (!this.login.isLoggedIn()) {
       this.authguard.logout();
     }
+
   }
 
   ngOnDestroy(): void {

@@ -1,0 +1,13 @@
+<div class="container">
+    <h3>Most popular Hashtags: </h3>
+    <div class="hashtags-container">
+        <app-hashtag *ngFor="let tag of hashtags" [hashtagContent]="tag"></app-hashtag>
+    </div>
+    <br><br>
+    <h3>Most popular users: </h3>
+    <div class="users-container">
+        <app-user *ngFor="let user of users" [name]="user.name" [surname]="user.surname" [username]="user.username">
+        </app-user>
+    </div>
+
+</div>

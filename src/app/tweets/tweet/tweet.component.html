@@ -5,9 +5,8 @@
         <button type="button" class="user-icon-btn">{{ userNameIcone}}</button>
     </div>
     <div class="tweet-content">
-        <!-- flex col -->
+
         <div class="user-info">
-            <!-- row -->
 
             <div class="user-name">
                 {{name}}&nbsp;{{surname}}
@@ -24,13 +23,17 @@
             </div>
 
         </div>
-        <div class="content">
-            <div #bodyText class="tweet-body">
-                {{ content }}
 
-                <div #truncator class="fade-out-truncation"> </div>
+        <button class="tweet-button">
+            <div class="content" (click)="tweetDetails()">
+                <div #bodyText class="tweet-body">
+                    {{ content }}
+
+                    <div #truncator class="fade-out-truncation"> </div>
+                </div>
             </div>
-        </div>
+        </button>
+
         <div class="bottom-icons">
             <div class="comments">
                 <div class="comment-icon">

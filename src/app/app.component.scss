@@ -1,3 +1,22 @@
+.main {
+
+    display: flex;
+    flex-direction: row;
+}
+
+.header {
+    width: 200px;
+    min-width: none;
+    max-width: none;
+}
+
+
 .container {
-    width: 95%;
+    max-width: 700px;
+}
+
+.empty1{
+    width: 150px;
+
+
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthLoginService } from 'src/app/login/services/auth-login.service';
-import { User } from 'src/app/model';
+import { User, UserDtoIn } from 'src/app/model';
 import { TwiterServiceService } from 'src/app/services/twiter-service.service';
 
 @Component({
@@ -13,40 +13,35 @@ export class DashboardComponent implements OnInit {
 
   id: string | any;
   public isLogged!: boolean;
+  notLoggedFlag: boolean = true;
 
   public userName!: string;
   public userSurname!: string;
-
-  // = {
-  //   name: 'a',
-  //   surname: 's',
-  //   password: '',
-  //   email: '',
-  //   username: ''
-  // };
 
   constructor(
     private router: Router,
     private authService: AuthLoginService,
     private twiterService: TwiterServiceService) {
-
   }
 
   ngOnInit() {
-    this.id = localStorage.getItem('token');
-    console.log(this.id);
-    this.isLogged = true;
-    console.log(this.isLogged);
-    this.userName = localStorage.getItem('name') as string;
-    this.userSurname = localStorage.getItem('surname') as string;
+    let user: UserDtoIn = JSON.parse(localStorage.getItem('user') as string);
+    // this.id = localStorage.getItem('token');
+    // console.log(this.id);
+    this.userName = user.name;
+    this.userSurname = user.surname;
+    if (this.userName.length <= 1) {
+      console.log('no username !');
+      this.authService.logout();
+    }
   }
 
   logout() {
     this.isLogged = false;
     console.log(this.isLogged);
     console.log('logout');
-
     this.authService.logout();
     this.router.navigate(['']);
+    window.location.reload();
   }
 } 

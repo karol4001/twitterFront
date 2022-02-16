@@ -9,6 +9,7 @@ export class AuthLoginService {
   constructor() { }
 
   logout(): void {
+    console.log('LOGOUT()');
     localStorage.setItem('isLoggedIn', 'false');
     localStorage.removeItem('token');
   }
