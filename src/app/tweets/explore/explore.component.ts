@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HashtagComponent } from './hashtag/hashtag.component';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserDtoIn } from 'src/app/model';
 
 @Component({
@@ -21,14 +21,24 @@ export class ExploreComponent implements OnInit {
 
   ngOnInit(): void {
     let username = localStorage.getItem('username') as string;
-    this.http.get('http://localhost:9000/api/hashtags/popular').subscribe((hashtags: any) => {
+    let btoatGen = localStorage.getItem('btoa') as string;
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'content-Type': 'application/json',
+        'authorization': 'Basic ' + btoatGen,
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, PUT, DELETE'
+      })
+    };
+
+    this.http.get('http://localhost:9000/api/hashtags/popular', httpOptions).subscribe((hashtags: any) => {
       this.hashtags = hashtags;
       console.log(this.hashtags);
       return this.hashtags;
     });
 
     let searchWord = 'a';
-    this.http.get('http://localhost:9000/api/search/user/' + searchWord).subscribe((users: any) => {
+    this.http.get('http://localhost:9000/api/search/user/' + searchWord, httpOptions).subscribe((users: any) => {
       this.users = users;
       return this.users;
     });

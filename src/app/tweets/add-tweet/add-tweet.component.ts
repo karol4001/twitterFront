@@ -57,7 +57,6 @@ export class AddTweetComponent implements OnInit {
     localStorage.removeItem('addNewTweetFlag');
     console.log('new tweet: ' + this.content);
     this.twiterService.addTweet(this.content);
-
   }
 
   cancelNewTweet() {

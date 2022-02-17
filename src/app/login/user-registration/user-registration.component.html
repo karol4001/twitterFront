@@ -5,7 +5,7 @@
             <div class="form-group clearfix">
                 <label class="col-md-3 col-sm-5 col-xs-12" for="name">Imię:</label>
                 <div class="col-md-9 col-sm-7 col-xs-12">
-                    <input class="form-control" formcontrolname="name" [(ngModel)]="newUser.name" type="text"
+                    <input class="form-control" formcontrolname="name" [(ngModel)]="this.form.name" type="text"
                         [ngModelOptions]="{standalone: true}" required />
                     <div class="invalid-feedback">Please enter a username.</div>
                 </div>
@@ -56,29 +56,29 @@
 </div> -->
 <div class="register-form">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <div class="form-group">
+        <div class="form-group form-check">
             <label>Imię: </label>
-            <input type="text" formControlName="fullname" class="form-control"
-                [ngClass]="{ 'is-invalid': submitted && f['fullname'].errors }" />
-            <div *ngIf="submitted && f['fullname'].errors" class="invalid-feedback">
-                <div *ngIf="f['fullname'].errors['required']">Imię jest wymagane</div>
+            <input type="text" formControlName="name" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f['name'].errors }" autocomplete="imię" />
+            <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+                <div *ngIf="f['name'].errors['required']">Imię jest wymagane</div>
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group form-check ">
             <label>Nazwisko: </label>
-            <input type="text" formControlName="fullsurname" class="form-control"
-                [ngClass]="{ 'is-invalid': submitted && f['fullsurname'].errors }" />
-            <div *ngIf="submitted && f['fullsurname'].errors" class="invalid-feedback">
-                <div *ngIf="f['fullsurname'].errors['required']">Nazwisko jest wymagane</div>
+            <input type="text" formControlName="surname" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f['surname'].errors }" autocomplete="nazwisko" />
+            <div *ngIf="submitted && f['surname'].errors" class="invalid-feedback">
+                <div *ngIf="f['surname'].errors['required']">Nazwisko jest wymagane</div>
             </div>
         </div>
 
 
-        <div class="form-group">
+        <div class="form-group form-check">
             <label>Nazwa użytkownika: </label>
             <input type="text" formControlName="username" class="form-control"
-                [ngClass]="{ 'is-invalid': submitted && f['username'].errors }" />
+                [ngClass]="{ 'is-invalid': submitted && f['username'].errors }" autocomplete="nazwa użytkownika" />
             <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
                 <div *ngIf="f['username'].errors['required']">Nazwa użytkownika jest wymagana</div>
                 <div *ngIf="f['username'].errors['minlength']">
@@ -90,20 +90,20 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group form-check">
             <label>Email</label>
             <input type="text" formControlName="email" class="form-control"
                 [ngClass]="{ 'is-invalid': submitted && f['email'].errors }" />
             <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
-                <div *ngIf="f['email'].errors['required']">Email is required</div>
+                <div *ngIf="f['email'].errors['required']" autocomplete="off">Email is required</div>
                 <div *ngIf="f['email'].errors['email']">Email is invalid</div>
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group form-check">
             <label>Password</label>
             <input type="password" formControlName="password" class="form-control"
-                [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" />
+                [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" autocomplete="off" />
             <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
                 <div *ngIf="f['password'].errors['required']">Password is required</div>
                 <div *ngIf="f['password'].errors['minlength']">
@@ -115,10 +115,10 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group form-check">
             <label>Confirm Password</label>
             <input type="password" formControlName="confirmPassword" class="form-control"
-                [ngClass]="{ 'is-invalid': submitted && f['confirmPassword'].errors }" />
+                [ngClass]="{ 'is-invalid': submitted && f['confirmPassword'].errors }" autocomplete="off" />
             <div *ngIf="submitted && f['confirmPassword'].errors" class="invalid-feedback">
                 <div *ngIf="f['confirmPassword'].errors['required']">
                     Confirm Password is required
@@ -129,7 +129,16 @@
             </div>
         </div>
 
-        <!-- <div class="form-group form-check">
+        <div class="form-group">
+            <button type="submit" class="btn btn-outline-primary" style="color: aliceblue;">Register</button>
+            <button type="button" (click)="cancel()" class="btn btn-outline-info float-right"
+                style="color: aliceblue;">Cancel</button>
+        </div>
+    </form>
+</div>
+
+
+<!-- <div class="form-group form-check">
             <input type="checkbox" formControlName="acceptTerms" class="form-check-input"
                 [ngClass]="{ 'is-invalid': submitted && f['acceptTerms'].errors }" />
             <label for="acceptTerms" class="form-check-label">I have read and agree to the Terms</label>
@@ -137,11 +146,3 @@
                 Accept Terms is required
             </div>
         </div> -->
-
-        <div class="form-group">
-            <button type="submit" class="btn btn-outline-primary" (click)="onSubmit()">Register</button>
-            <!-- <button type="button" (click)="onReset()" class="btn btn-outline-info float-right">Reset-form</button> -->
-            <button type="button" (click)="cancel()" class="btn btn-outline-info float-right">Cancel</button>
-        </div>
-    </form>
-</div>

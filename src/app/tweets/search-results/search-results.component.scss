@@ -1,12 +1,18 @@
 .container {
     // border: rgb(236, 235, 235) 1px solid;
+  
+    height: 800px;
+    overflow-y: scroll;
+    
+}
+.container::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
 }
 
 .navbar {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-
 }
 
 .users-results, .tweets-results {
@@ -53,6 +59,9 @@
 
 }
 
-.users-list {
+.users-list, .tweets-list {
     position: relative;
+  
 }
+
+

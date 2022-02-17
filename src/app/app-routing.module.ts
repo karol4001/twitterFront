@@ -11,6 +11,7 @@ import { SearchResultsComponent } from './tweets/search-results/search-results.c
 import { UserProfileComponent } from './tweets/user-profile/user-profile.component';
 import { MenuComponent } from './tweets/menu/menu.component';
 import { ExploreComponent } from './tweets/explore/explore.component';
+import { BookmarksComponent } from './tweets/bookmarks/bookmarks.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -34,6 +35,14 @@ const routes: Routes = [
     ], canActivate: [AuthGuard]
   },
   { path: 'tweet-details', component: TweetDetailsComponent, canActivate: [AuthGuard] },
+  {
+    path: 'bookmarks', component: BookmarksComponent, children: [
+      {
+        path: '',
+        component: MenuComponent
+      }
+    ], canActivate: [AuthGuard]
+  },
 
 ];
 

@@ -7,8 +7,10 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
 import { User, UserDtoIn } from 'src/app/model';
 import { TwiterServiceService } from 'src/app/services/twiter-service.service';
 import { DatePipe } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MenuServiceService } from 'src/app/services/menu-service.service';
+import * as bcrypt from 'bcryptjs';
+
 
 
 @Component({
@@ -27,6 +29,12 @@ export class LoginComponent implements OnInit, OnDestroy {
   user!: UserDtoIn;
   authorized!: boolean;
   responseUser!: UserDtoIn;
+
+
+  credentials = {
+    username: '',
+    password: ''
+  }
 
   constructor(
     private formBuilder: FormBuilder,
@@ -59,12 +67,28 @@ export class LoginComponent implements OnInit, OnDestroy {
     // odbiór danych z serwera REST
     console.log('... login');
 
-    this.http.post('http://localhost:9000/api/login', this.test).subscribe(
+    // this.authService.authenticate(this.test, () => {
+    //   this.router.navigateByUrl('/home');
+    // });
+    // return false;
+    let btoatGen = window.btoa(this.test.username + ':' + this.test.password);
+    localStorage.setItem('btoa', btoatGen);
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'content-Type': 'application/json',
+        'authorization': 'Basic ' + btoatGen,
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, PUT, DELETE'
+      })
+    };
+
+    // alert('username: ' + this.test.username + ' pass: ' + this.test.password);
+    let _login = this.test.username + '-' + this.test.password;
+    this.http.get('http://localhost:9000/api/user/login/' + _login, httpOptions).subscribe(
       (response: any) => {
-        console.log(response.headers);
+        // alert(response);
         if (response.username) {
           this.authorized = true;
-          // this.twiterService.setUser(response);
           this.user = response;
           console.log('Logged user: ' + JSON.stringify(this.responseUser));
         }

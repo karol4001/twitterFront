@@ -1,13 +1,17 @@
 <div class="container">
 
     <div class="original-tweet">
-        <app-tweet *ngFor="let tweet" [id]="tweet.id" [content]="tweet.content" [username]="tweet.username"
-            [publishingTime]="tweet.publishingTime" [likes]="tweet.likes" [retweets]="tweet.retweets"
-            [comments]="tweet.comments"></app-tweet>
+        <h3>Oryginalny tweet:</h3>
+        <app-comment name="orgTweet" #orgTweet class="original" [(ngModel)]="tweet" [id]="tweet.id"
+            [content]="tweet.content" [username]="tweet.username" [publishingTime]="tweet.publishingTime"
+            [likes]="tweet.likes" [retweets]="tweet.retweets" [comments]="tweet.comments" ngDefaultControl>
+        </app-comment>
     </div>
     <div class="comments-container">
-        <app-tweet *ngFor="let comment of comments" [id]="tweet.id" [content]="comment.content"
+        <h3>Komentarze:</h3>
+        <app-comment name="comments" *ngFor="let comment of comments" [id]="tweet.id" [content]="comment.content"
             [username]="comment.username" [publishingTime]="comment.publishingTime" [likes]="comment.likes"
-            [retweets]="comment.retweets" [comments]="comment.comments"></app-tweet>
+            [retweets]="comment.retweets" [comments]="comment.comments" ngDefaultControl></app-comment>
     </div>
+
 </div>

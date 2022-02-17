@@ -23,6 +23,9 @@ import { UserComponent } from './tweets/user/user.component';
 import { MenuServiceService } from './services/menu-service.service';
 import { ExploreComponent } from './tweets/explore/explore.component';
 import { HashtagComponent } from './tweets/explore/hashtag/hashtag.component';
+import { CommentComponent } from './tweets/comment/comment.component';
+import { BookmarkComponent } from './tweets/bookmark/bookmark.component';
+import { BookmarksComponent } from './tweets/bookmarks/bookmarks.component';
 
 
 
@@ -45,6 +48,9 @@ import { HashtagComponent } from './tweets/explore/hashtag/hashtag.component';
     UserComponent,
     ExploreComponent,
     HashtagComponent,
+    CommentComponent,
+    BookmarkComponent,
+    BookmarksComponent,
 
   ],
   imports: [

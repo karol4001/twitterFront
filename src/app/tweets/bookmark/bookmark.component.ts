@@ -2,15 +2,14 @@ import { Component, OnInit, ElementRef, Input, Renderer2, ViewChild, ViewChildre
 import { DatePipe } from '@angular/common';
 import { TwiterServiceService } from 'src/app/services/twiter-service.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { TweetsListComponent } from '../tweets-list/tweets-list.component';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-tweet',
-  templateUrl: './tweet.component.html',
-  styleUrls: ['./tweet.component.scss']
+  selector: 'app-bookmark',
+  templateUrl: './bookmark.component.html',
+  styleUrls: ['./bookmark.component.scss']
 })
-export class TweetComponent implements OnInit {
+export class BookmarkComponent implements OnInit {
 
   @Input('id') id!: number;
   @Input('username') username!: string;
@@ -19,7 +18,6 @@ export class TweetComponent implements OnInit {
   @Input('likes') likes: any = 0;
   @Input('retweets') retweets: any = 0;
   @Input('comments') comments: any = 0;
-
 
   userNameIcone!: string;
   name!: string;
@@ -33,7 +31,7 @@ export class TweetComponent implements OnInit {
     private renderer: Renderer2,
     private datePipe: DatePipe,
     private twiterService: TwiterServiceService,
-    private http: HttpClient, private tweetsList: TweetsListComponent,
+    private http: HttpClient,
     private router: Router) {
   }
 
@@ -75,7 +73,6 @@ export class TweetComponent implements OnInit {
         // alert(JSON.stringify(error));
       }
     );
-    this.tweetsList.ngOnInit();
   }
 
   tweetDetails() {
@@ -95,3 +92,6 @@ export class TweetComponent implements OnInit {
   }
 
 }
+
+
+

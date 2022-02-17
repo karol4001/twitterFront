@@ -3,6 +3,7 @@ import { User } from '../interfaces/user';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Validation from './validation';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -15,15 +16,17 @@ export class UserRegistrationComponent implements OnInit {
   form!: FormGroup;
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder, private router: Router) { }
+  constructor(
+    private formBuilder: FormBuilder, private router: Router,
+    private http: HttpClient
+  ) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group(
       {
-        fullname: ['', Validators.required],
-        fullsurname: ['', Validators.required],
-        username: [
-          '',
+        name: ['', Validators.required],
+        surname: ['', Validators.required],
+        username: ['',
           [
             Validators.required,
             Validators.minLength(6),
@@ -31,8 +34,7 @@ export class UserRegistrationComponent implements OnInit {
           ]
         ],
         email: ['', [Validators.required, Validators.email]],
-        password: [
-          '',
+        password: ['',
           [
             Validators.required,
             Validators.minLength(6),
@@ -53,15 +55,24 @@ export class UserRegistrationComponent implements OnInit {
   }
 
   onSubmit(): void {
+
     this.submitted = true;
     console.log('submitted');
     console.log(this.form.errors);
-    // if (this.form.invalid) {
-    //   return;
-    // }
 
-    // console.log(JSON.stringify(this.form.value, null, 2));
-    console.log('New user information: ' + this.form.value);
+    alert(JSON.stringify(this.form.value));
+
+    this.http.post('http://localhost:9000/api/user/add', this.form.value).subscribe(
+      (response: any) => {
+        alert(JSON.stringify(response));
+      },
+      (error) => {
+        // alert(JSON.stringify(error));
+      }
+    );
+
+
+    console.log('New user information: ' + JSON.stringify(this.form.value));
     this.router.navigate(['']);
   }
 

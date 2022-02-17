@@ -2,7 +2,7 @@ import { Component, OnChanges, OnInit, SimpleChanges, ViewChild, EventEmitter, O
 import { Tweet, TweetDtoIn } from 'src/app/model';
 import { TwiterServiceService } from 'src/app/services/twiter-service.service';
 import { AddTweetComponent } from '../add-tweet/add-tweet.component';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { MenuServiceService } from 'src/app/services/menu-service.service';
 
@@ -46,6 +46,16 @@ export class TweetsListComponent implements OnInit, OnDestroy {
     // });
 
     let username = localStorage.getItem('username') as string;
+    let btoatGen = localStorage.getItem('btoa') as string;
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'content-Type': 'application/json',
+        'authorization': 'Basic ' + btoatGen,
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, PUT, DELETE'
+      })
+    };
+
     this.http.get('http://localhost:9000/api/user/' + username).subscribe((tweets: any) => {
       this.tweets = tweets;
       // console.log(this.tweets);
@@ -80,7 +90,7 @@ export class TweetsListComponent implements OnInit, OnDestroy {
     //   }
     // );
     // this.ngOnInit();
-    this.tweets = this.twiterService.loadTweets();
+    // this.tweets = this.twiterService.loadTweets();
     this.profileVisible = false;
     this.tweetsVisible = false;
     this.searchResultsVisible = true;
@@ -88,8 +98,8 @@ export class TweetsListComponent implements OnInit, OnDestroy {
     console.log('search word: ' + this.searchWord);
     // this.searchResults.ngOnInit();
     // czyszczenie wpisanego słowa w input search
-    let inputs = document.querySelectorAll("input");
-    inputs.forEach((input) => (input.value = ""));
+    // let inputs = document.querySelectorAll("input");
+    // inputs.forEach((input) => (input.value = ""));
     this.twiterService.searchClickEvent();
 
 

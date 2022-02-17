@@ -1,5 +1,5 @@
 import { Injectable, Input, EventEmitter } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Tweet, TweetDtoIn, TweetDtoOut, User, UserDtoIn } from '../model';
 import { DatePipe } from '@angular/common';
 import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
@@ -17,6 +17,7 @@ export class TwiterServiceService {
   tweet!: TweetDtoIn;
   private loadTwittsStatus: BehaviorSubject<boolean>;
   private loadTwittsFinished: boolean;
+
 
   baseApiUrl = 'http://localhost:9000/api/user/' + localStorage.getItem('username');
 
@@ -40,7 +41,13 @@ export class TwiterServiceService {
 
   loadTweets(): TweetDtoIn[] {
     if (!this.loadTwittsFinished) {
-      this.http.get(this.baseApiUrl).subscribe((tweets: any) => {
+      let httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': 'Basic jan 1234'
+        })
+      };
+      this.http.get(this.baseApiUrl, httpOptions).subscribe((tweets: any) => {
         this.tweets = tweets;
         // alert(this.tweets);
         this.loadTwittsFinished = true;
@@ -57,8 +64,18 @@ export class TwiterServiceService {
     this.newTweet.content = content;
     this.newTweet.author = user.id;
     console.log('new tweet: ' + this.newTweet)
-    alert('user id: ' + user.id);
-    this.http.post('http://localhost:9000/api/' + user.id, this.newTweet).subscribe(
+    // alert('user id: ' + user.id);
+    let btoatGen = localStorage.getItem('btoa') as string;
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'content-Type': 'application/json',
+        'authorization': 'Basic ' + btoatGen,
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, PUT, DELETE'
+      })
+    };
+
+    this.http.post('http://localhost:9000/api/' + user.id, this.newTweet, httpOptions).subscribe(
       (response: any) => {
         console.log(JSON.stringify(response));
       },
@@ -66,6 +83,7 @@ export class TwiterServiceService {
         alert(JSON.stringify(error));
       }
     );
+    window.location.reload();
   }
 
   searchClickEvent() {
@@ -106,6 +124,7 @@ export class TwiterServiceService {
 
   tweetDetails(tweet: TweetDtoIn) {
     this.tweet = tweet;
+    this.router.navigate(['tweet-details']);
   }
 
   getTweetDetails(): TweetDtoIn {

@@ -1,0 +1,11 @@
+<div class="container">
+    <h3>Bookmarks: </h3>
+
+    <div class="bookmarks-list">
+        <app-bookmark *ngFor="let bookmark of bookmarks" [id]="bookmark.id" [content]="bookmark.content"
+            [username]="bookmark.username" [publishingTime]="bookmark.publishingTime" [likes]="bookmark.likes"
+            [retweets]="bookmark.retweets" [comments]="bookmark.comments">
+        </app-bookmark>
+    </div>
+
+</div>

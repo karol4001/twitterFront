@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { TweetDtoIn, UserDtoIn } from 'src/app/model';
 import { TwiterServiceService } from 'src/app/services/twiter-service.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { interval, Subject, Subscription, take, tap, timeout } from 'rxjs';
 
 import { ChangeDetectorRef } from '@angular/core';
@@ -65,6 +65,16 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
 
   public resultsViewUsers() {
     // this.tweetTweets = this.twitterService.getLocalTweets();
+    let btoatGen = localStorage.getItem('btoa') as string;
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'content-Type': 'application/json',
+        'authorization': 'Basic ' + btoatGen,
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, PUT, DELETE'
+      })
+    };
+
     let searchWord = localStorage.getItem('searchWord') as string;
     this.http.get('http://localhost:9000/api/search/user/' + searchWord).subscribe((users: any) => {
       this.users = users;

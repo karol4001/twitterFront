@@ -44,6 +44,12 @@ export class MenuComponent implements OnInit {
       this.menuOnFlag = false;
       console.log('menu OFF');
     }
+
+    if (document.location.href == 'login') {
+      alert(document.location.href);
+      this.menuOnFlag = false;
+    }
+
   }
 
   addTweet() {
@@ -67,6 +73,9 @@ export class MenuComponent implements OnInit {
     this.router.navigate(['/explore']);
   }
 
+  bookmarksView() {
+    this.router.navigate(['bookmarks']);
+  }
 
 
 }

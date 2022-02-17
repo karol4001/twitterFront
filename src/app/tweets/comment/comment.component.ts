@@ -2,15 +2,16 @@ import { Component, OnInit, ElementRef, Input, Renderer2, ViewChild, ViewChildre
 import { DatePipe } from '@angular/common';
 import { TwiterServiceService } from 'src/app/services/twiter-service.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { TweetsListComponent } from '../tweets-list/tweets-list.component';
 import { Router } from '@angular/router';
+import { TweetDtoIn } from 'src/app/model';
+import { IfStmt } from '@angular/compiler';
 
 @Component({
-  selector: 'app-tweet',
-  templateUrl: './tweet.component.html',
-  styleUrls: ['./tweet.component.scss']
+  selector: 'app-comment',
+  templateUrl: './comment.component.html',
+  styleUrls: ['./comment.component.scss']
 })
-export class TweetComponent implements OnInit {
+export class CommentComponent implements OnInit {
 
   @Input('id') id!: number;
   @Input('username') username!: string;
@@ -20,6 +21,15 @@ export class TweetComponent implements OnInit {
   @Input('retweets') retweets: any = 0;
   @Input('comments') comments: any = 0;
 
+  tweet: TweetDtoIn = {
+    id: this.id,
+    content: this.content,
+    likes: this.likes,
+    retweets: this.retweets,
+    comments: this.comments,
+    username: this.username,
+    publishingTime: this.publishingTime
+  }
 
   userNameIcone!: string;
   name!: string;
@@ -33,7 +43,7 @@ export class TweetComponent implements OnInit {
     private renderer: Renderer2,
     private datePipe: DatePipe,
     private twiterService: TwiterServiceService,
-    private http: HttpClient, private tweetsList: TweetsListComponent,
+    private http: HttpClient,
     private router: Router) {
   }
 
@@ -48,7 +58,6 @@ export class TweetComponent implements OnInit {
     if (this.username) {
       this.userNameIcone = this.username.charAt(0).toUpperCase();
     }
-
     this.name = localStorage.getItem('name') as string;
     this.surname = localStorage.getItem('surname') as string;
     this.userLogin = localStorage.getItem('username') as string;
@@ -56,6 +65,8 @@ export class TweetComponent implements OnInit {
   }
 
   addTweetLike() {
+    let user = JSON.parse(localStorage.getItem('user') as string);
+
     let btoatGen = localStorage.getItem('btoa') as string;
     let httpOptions = {
       headers: new HttpHeaders({
@@ -66,32 +77,16 @@ export class TweetComponent implements OnInit {
       })
     };
 
-    let user = JSON.parse(localStorage.getItem('user') as string);
-    this.http.post('http://localhost:9000/api/tweet/like/' + user.username + '/' + this.id, '').subscribe(
-      (response: any) => {
-        // alert(JSON.stringify(response));
-      },
+    this.http.post('http://localhost:9000/api/tweet/like/' + user.username + '/' + this.id, '', httpOptions).subscribe((response: any) => {
+      // alert(JSON.stringify(response));
+    },
       (error) => {
         // alert(JSON.stringify(error));
       }
     );
-    this.tweetsList.ngOnInit();
   }
 
   tweetDetails() {
-
-    let tweet = {
-      id: this.id,
-      content: this.content,
-      likes: this.likes,
-      retweets: this.retweets,
-      comments: this.comments,
-      username: this.username,
-      publishingTime: this.publishingTime
-    }
-
-    this.twiterService.tweetDetails(tweet)
-    this.router.navigate(['tweet-details']);
+    this.twiterService.tweetDetails(this.tweet)
   }
-
 }
