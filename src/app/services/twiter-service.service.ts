@@ -11,14 +11,11 @@ import { Router } from '@angular/router';
 export class TwiterServiceService {
 
   @Input('tweets') tweets: TweetDtoIn[] = [];
-  // user: UserDtoIn;
   newTweet: TweetDtoOut = new TweetDtoOut;
   private subject = new Subject<boolean>();
   tweet!: TweetDtoIn;
   private loadTwittsStatus: BehaviorSubject<boolean>;
   private loadTwittsFinished: boolean;
-
-
   baseApiUrl = 'http://localhost:9000/api/user/' + localStorage.getItem('username');
 
   constructor(
@@ -64,7 +61,6 @@ export class TwiterServiceService {
     this.newTweet.content = content;
     this.newTweet.author = user.id;
     console.log('new tweet: ' + this.newTweet)
-    // alert('user id: ' + user.id);
     let btoatGen = localStorage.getItem('btoa') as string;
     let httpOptions = {
       headers: new HttpHeaders({

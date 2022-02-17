@@ -26,8 +26,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     let user: UserDtoIn = JSON.parse(localStorage.getItem('user') as string);
-    // this.id = localStorage.getItem('token');
-    // console.log(this.id);
     this.userName = user.name;
     this.userSurname = user.surname;
     if (this.userName.length <= 1) {
